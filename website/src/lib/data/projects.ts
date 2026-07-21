@@ -58,8 +58,6 @@ export const projects: Project[] = [
     images: [
       "/images/portfolio/kfc-amk/1.jpg",
       "/images/portfolio/kfc-amk/2.jpg",
-      "/images/portfolio/kfc-amk/3.jpg",
-      "/images/portfolio/kfc-amk/4.jpg",
     ],
   },
   {
@@ -70,10 +68,10 @@ export const projects: Project[] = [
     location: "Downtown East",
     year: "2026",
     summary:
-      "A KFC storefront and dining fit-out at Downtown East, with a backlit exterior sign and branded dining nooks.",
+      "A KFC dining fit-out at Downtown East, built around an exposed services ceiling, a neon feature wall, and booth seating.",
     description: [
-      "This outlet's fit-out centres on a backlit exterior sign and an open dining room finished with branded wall graphics and seating nooks.",
-      "Custom dining nooks with graphic wall art and a feature wall give the space personality beyond a standard quick-service layout.",
+      "The dining room was designed to sit under an exposed services ceiling, with red and timber battens run across it to turn the plant above into part of the look rather than something to hide.",
+      "A neon KFC wall with backlit rooster artwork anchors one side, a “Meant to be Shared” feature wall and red banquette the other, with a free-standing order-kiosk island keeping the queue clear of the seating.",
     ],
     images: [
       "/images/portfolio/kfc-downtown-east/1.jpg",
@@ -152,10 +150,10 @@ export const projects: Project[] = [
     location: "Bidadari",
     year: "2026",
     summary:
-      "A dark-editorial HDB renovation in Bidadari — a matte-black kitchen, a fluted timber feature wall, and travertine-toned bathrooms.",
+      "A dark-editorial HDB renovation in Bidadari — a matte-black kitchen, a fluted timber feature wall, and two bathrooms in contrasting stone and walnut.",
     description: [
-      "This renovation reworked the flat into an open-plan living, dining, and kitchen space wrapped in a restrained dark palette — a wood-panelled TV feature wall, cove lighting, and a matte-black kitchen with a stone-look peninsula.",
-      "Custom carpentry carries the palette through, from a fluted timber wall with a backlit display niche to travertine-toned bathrooms finished with stone vessel sinks and backlit mirrors.",
+      "This renovation reworked the flat into an open-plan living, dining, and kitchen space wrapped in a restrained dark palette — a wood-panelled TV feature wall, cove lighting, and a matte-black kitchen with a stone-look peninsula that doubles as a breakfast bar.",
+      "Custom carpentry carries the palette through, from a fluted timber wall with a backlit display niche to two bathrooms finished in deliberately different materials: travertine-toned tile with a stone vessel sink and backlit mirror in one, walnut-clad walls and a black rainfall shower in the other.",
     ],
     images: [
       "/images/portfolio/residential-bidadari/1.jpg",
@@ -164,14 +162,17 @@ export const projects: Project[] = [
       "/images/portfolio/residential-bidadari/4.jpg",
       "/images/portfolio/residential-bidadari/5.jpg",
       "/images/portfolio/residential-bidadari/6.jpg",
+      "/images/portfolio/residential-bidadari/7.jpg",
     ],
   },
   {
-    slug: "residential-jalan-kemboja",
-    title: "Landed Home, Jalan Kemboja",
+    // Residential projects are always genericised to the district — never the
+    // street, block, or unit — so a client's home address can't be identified.
+    slug: "residential-potong-pasir",
+    title: "Landed Home, Potong Pasir",
     category: "residential",
     type: "Landed Property",
-    location: "Jalan Kemboja",
+    location: "Potong Pasir",
     year: "2026",
     summary:
       "A full landed-property renovation with a double-height living room, home theatre lounge, and private lift.",
@@ -180,12 +181,12 @@ export const projects: Project[] = [
       "Custom carpentry runs throughout — from mirrored wardrobes in the foyer to a full built-in wardrobe wall along the corridor — finished to a consistent standard across every room.",
     ],
     images: [
-      "/images/portfolio/residential-jalan-kemboja/1.jpg",
-      "/images/portfolio/residential-jalan-kemboja/2.jpg",
-      "/images/portfolio/residential-jalan-kemboja/3.jpg",
-      "/images/portfolio/residential-jalan-kemboja/4.jpg",
-      "/images/portfolio/residential-jalan-kemboja/5.jpg",
-      "/images/portfolio/residential-jalan-kemboja/6.jpg",
+      "/images/portfolio/residential-potong-pasir/1.jpg",
+      "/images/portfolio/residential-potong-pasir/2.jpg",
+      "/images/portfolio/residential-potong-pasir/3.jpg",
+      "/images/portfolio/residential-potong-pasir/4.jpg",
+      "/images/portfolio/residential-potong-pasir/5.jpg",
+      "/images/portfolio/residential-potong-pasir/6.jpg",
     ],
   },
 ];

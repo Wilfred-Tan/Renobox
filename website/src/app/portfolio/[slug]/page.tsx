@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { isLandscape } from "@/lib/data/image-sizes";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
@@ -108,20 +109,36 @@ export default async function ProjectDetailPage({
 
               {project.images.length > 1 && (
                 <div className="mt-4 grid grid-cols-2 gap-4">
-                  {project.images.slice(1).map((src, i) => (
-                    <div
-                      key={src}
-                      className={`relative aspect-[4/5] overflow-hidden bg-ink-soft ${i % 2 === 1 ? "mt-8" : ""}`}
-                    >
-                      <Image
-                        src={src}
-                        alt={`${project.title} — photo ${i + 2}`}
-                        fill
-                        sizes="(min-width: 1024px) 25vw, 45vw"
-                        className="object-cover"
-                      />
-                    </div>
-                  ))}
+                  {project.images.slice(1).map((src, i) => {
+                    // Landscape photos get the full width of the grid at a 3:2
+                    // tile; portrait photos keep a single 4:5 column. Forcing a
+                    // wide photo into the tall tile cropped away half the frame.
+                    const wide = isLandscape(src);
+                    return (
+                      <div
+                        key={src}
+                        className={
+                          wide
+                            ? "relative col-span-2 aspect-[3/2] overflow-hidden bg-ink-soft"
+                            : "relative aspect-[4/5] overflow-hidden bg-ink-soft"
+                        }
+                      >
+                        <Image
+                          src={src}
+                          alt={`${project.title} — photo ${i + 2}`}
+                          fill
+                          // A wide photo in the 3:2 tile is covered by HEIGHT, so it
+                          // needs ~(its aspect / 1.5) more width than the tile itself.
+                          sizes={
+                            wide
+                              ? "(min-width: 1024px) 65vw, 100vw"
+                              : "(min-width: 1024px) 28vw, 45vw"
+                          }
+                          className="object-cover"
+                        />
+                      </div>
+                    );
+                  })}
                 </div>
               )}
 
