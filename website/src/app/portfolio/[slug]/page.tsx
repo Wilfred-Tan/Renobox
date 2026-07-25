@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProjectCard } from "@/components/cards/ProjectCard";
+import { ProjectPlaceholder } from "@/components/cards/ProjectPlaceholder";
 import { projects, getProjectBySlug } from "@/lib/data/projects";
 
 export function generateStaticParams() {
@@ -44,14 +45,18 @@ export default async function ProjectDetailPage({
   return (
     <>
       <section className="relative flex min-h-[70vh] items-end overflow-hidden bg-ink">
-        <Image
-          src={project.images[0]}
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
+        {project.images.length > 0 ? (
+          <Image
+            src={project.images[0]}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        ) : (
+          <ProjectPlaceholder project={project} size="hero" />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/25" />
         <Container size="wide" className="relative z-10 pt-40 pb-16 md:pt-44 md:pb-20">
           <Link

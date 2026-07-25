@@ -19,45 +19,110 @@ export type Project = {
 // Real projects and photography. A handful of recent, well-photographed jobs —
 // Reno Box has delivered 300+ projects overall (see site.stats), most from
 // before the team started keeping a consistent photo record.
+//
+// Order is reverse-chronological (most recently completed first), driven by
+// the "YYYY MM" prefix on each project's source photo folder — not by
+// category. Ties at month granularity keep a stable relative order.
 export const projects: Project[] = [
   {
-    slug: "kfc-plq",
-    title: "KFC Paya Lebar Quarter",
+    slug: "september-coffee",
+    title: "September Coffee",
     category: "commercial",
-    type: "F&B — Quick Service Restaurant",
-    location: "Paya Lebar Quarter",
-    year: "2025",
+    type: "F&B — Café",
+    location: "Craig Road",
+    year: "2026",
     summary:
-      "A full KFC storefront and dining fit-out at Paya Lebar Quarter, from the entrance through to branded booth seating.",
+      "A café fit-out on Craig Road, built around warm timber panelling, terracotta hex tiling, and a covered al fresco courtyard.",
     description: [
-      "This fit-out covered the complete customer journey — storefront entrance, order counter, and dining room — built to brand standard while holding up to daily quick-service volume.",
-      "Red-and-black booth seating, a wood-panelled feature wall, and a backlit “11 Herbs & Spices” wall anchor the dining area, finished to a standard that photographs as well as it performs.",
+      "This fit-out delivered a full café build-out spanning indoor and al fresco seating, unified by warm oak panelling, terracotta hex tile flooring, and woven-fabric pendant lighting throughout.",
+      "A covered outdoor courtyard extends the dining room onto Craig Road, while a terracotta-tiled host stand and timber-clad washroom carry the same material palette through the rest of the space.",
     ],
     images: [
-      "/images/portfolio/kfc-plq/1.jpg",
-      "/images/portfolio/kfc-plq/2.jpg",
-      "/images/portfolio/kfc-plq/3.jpg",
-      "/images/portfolio/kfc-plq/4.jpg",
-      "/images/portfolio/kfc-plq/5.jpg",
-      "/images/portfolio/kfc-plq/6.jpg",
+      "/images/portfolio/september-coffee/1.jpg",
+      "/images/portfolio/september-coffee/2.jpg",
+      "/images/portfolio/september-coffee/3.jpg",
+      "/images/portfolio/september-coffee/4.jpg",
+      "/images/portfolio/september-coffee/5.jpg",
+      "/images/portfolio/september-coffee/6.jpg",
+      "/images/portfolio/september-coffee/7.jpg",
+      "/images/portfolio/september-coffee/8.jpg",
+      "/images/portfolio/september-coffee/9.jpg",
+      "/images/portfolio/september-coffee/10.jpg",
     ],
   },
   {
-    slug: "kfc-amk",
-    title: "KFC Ang Mo Kio",
+    slug: "office-suntec-city",
+    title: "Corporate Office Fit-Out, Suntec City",
     category: "commercial",
-    type: "F&B — Quick Service Restaurant",
-    location: "Ang Mo Kio",
+    type: "Office",
+    location: "Suntec City",
     year: "2026",
     summary:
-      "A KFC dining room and storefront fit-out in Ang Mo Kio, with branded feature walls and booth seating throughout.",
+      "A corporate office fit-out at Suntec City, delivered end-to-end from design through handover.",
     description: [
-      "Following the same brand playbook as our other KFC fit-outs, this outlet pairs a backlit storefront sign with a dining room built around “Original Recipe” booth seating and a wordmark feature wall.",
-      "A backlit “Herbs & Spices” wall and coordinated pendant lighting complete the dining area, delivered to the same finish standard across every table.",
+      "This project covered a full office floor fit-out — partitioning, joinery, and M&E coordination — completed to the client's brand and workplace-standard specification.",
+      "As with a number of our corporate clients, photography from this project isn't available for publication; details are available on request.",
+    ],
+    images: [],
+  },
+  {
+    slug: "kfc-csp",
+    title: "KFC CSP",
+    category: "commercial",
+    type: "F&B — Quick Service Restaurant",
+    location: "CSP",
+    year: "2026",
+    summary:
+      "A KFC fit-out with a night-lit storefront and a self-order kiosk zone under an exposed services ceiling.",
+    description: [
+      "The night-lit storefront sign and glazed frontage were built for visibility from the walkway, opening onto a self-order kiosk zone sized for fast throughput.",
+      "Inside, a self-order kiosk bank and the “Meant to be Shared” feature wall sit under an exposed services ceiling, finished in the same branded language as our other KFC projects.",
     ],
     images: [
-      "/images/portfolio/kfc-amk/1.jpg",
-      "/images/portfolio/kfc-amk/2.jpg",
+      "/images/portfolio/kfc-csp/1.jpg",
+      "/images/portfolio/kfc-csp/2.jpg",
+    ],
+  },
+  {
+    slug: "office-toa-payoh",
+    title: "Corporate Office Fit-Out, Toa Payoh",
+    category: "commercial",
+    type: "Office",
+    location: "Toa Payoh",
+    year: "2026",
+    summary:
+      "A corporate office fit-out in Toa Payoh, with a wood-slat feature corridor and a built-in planter divider.",
+    description: [
+      "A wood-slat “skyline” feature wall runs the length of the main corridor, turning a functional walkway into the floor's visual centrepiece.",
+      "A built-in credenza topped with a living-wall planter divides the open office area, carrying the same warm-timber material language through the workspace.",
+    ],
+    images: [
+      "/images/portfolio/office-toa-payoh/1.jpg",
+      "/images/portfolio/office-toa-payoh/2.jpg",
+    ],
+  },
+  {
+    // Residential projects are always genericised to the district — never the
+    // street, block, or unit — so a client's home address can't be identified.
+    slug: "residential-potong-pasir",
+    title: "Landed Home, Potong Pasir",
+    category: "residential",
+    type: "Landed Property",
+    location: "Potong Pasir",
+    year: "2026",
+    summary:
+      "A full landed-property renovation with a double-height living room, home theatre lounge, and private lift.",
+    description: [
+      "This landed home renovation spans a double-height living room with floor-to-ceiling windows and a fluted stone feature wall, a dedicated home theatre lounge, and a marble-clad foyer with a bronze-framed private lift.",
+      "Custom carpentry runs throughout — from a full built-in wardrobe wall along the corridor to a bedroom wardrobe finished with inlaid bronze detailing — kept to a consistent standard across every room.",
+    ],
+    images: [
+      "/images/portfolio/residential-potong-pasir/1.jpg",
+      "/images/portfolio/residential-potong-pasir/2.jpg",
+      "/images/portfolio/residential-potong-pasir/3.jpg",
+      "/images/portfolio/residential-potong-pasir/4.jpg",
+      "/images/portfolio/residential-potong-pasir/5.jpg",
+      "/images/portfolio/residential-potong-pasir/6.jpg",
     ],
   },
   {
@@ -81,23 +146,39 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "kfc-csp",
-    title: "KFC CSP",
+    slug: "pizza-hut-downtown-east",
+    title: "Pizza Hut Downtown East",
     category: "commercial",
-    type: "F&B — Quick Service Restaurant",
-    location: "CSP",
+    type: "F&B — Restaurant",
+    location: "Downtown East",
     year: "2026",
     summary:
-      "A KFC storefront and dining fit-out, with a night-lit exterior sign and branded dining nooks.",
+      "A Pizza Hut dining fit-out at Downtown East, with booth seating, statement pendant lighting, and a pizza-mural feature wall.",
     description: [
-      "The exterior sign and order-kiosk zone were built for high visibility and fast throughput, with the dining room finished in the same branded language as our other KFC projects.",
-      "Circular graphic wall art and star-motif decor give the dining nooks a distinct identity within the standard KFC fit-out template.",
+      "The dining room pairs booth seating with red ball-pendant lamps under an angled ceiling, with a full-height pizza-mural wall anchoring one side of the room.",
+      "A quieter bench nook continues the same mural and checkerboard floor, giving the space a smaller-group seating option alongside the main dining area.",
     ],
     images: [
-      "/images/portfolio/kfc-csp/1.jpg",
-      "/images/portfolio/kfc-csp/2.jpg",
-      "/images/portfolio/kfc-csp/3.jpg",
-      "/images/portfolio/kfc-csp/4.jpg",
+      "/images/portfolio/pizza-hut-downtown-east/1.jpg",
+      "/images/portfolio/pizza-hut-downtown-east/2.jpg",
+    ],
+  },
+  {
+    slug: "kfc-amk",
+    title: "KFC Ang Mo Kio",
+    category: "commercial",
+    type: "F&B — Quick Service Restaurant",
+    location: "Ang Mo Kio",
+    year: "2026",
+    summary:
+      "A KFC dining room and storefront fit-out in Ang Mo Kio, with branded feature walls and booth seating throughout.",
+    description: [
+      "Following the same brand playbook as our other KFC fit-outs, this outlet pairs a backlit storefront sign with a dining room built around “Original Recipe” booth seating and a wordmark feature wall.",
+      "A backlit “Herbs & Spices” wall and coordinated pendant lighting complete the dining area, delivered to the same finish standard across every table.",
+    ],
+    images: [
+      "/images/portfolio/kfc-amk/1.jpg",
+      "/images/portfolio/kfc-amk/2.jpg",
     ],
   },
   {
@@ -108,38 +189,14 @@ export const projects: Project[] = [
     location: "Tiong Bahru",
     year: "2026",
     summary:
-      "A vibrant Pizza Hut fit-out in Tiong Bahru, with neon branded walls and communal dining tables.",
+      "A Pizza Hut dining fit-out in Tiong Bahru, with red booth seating and bold slogan feature walls.",
     description: [
-      "This fit-out brought Pizza Hut's refreshed brand identity to life — neon signage, a graphic feature wall, and communal table seating built for groups.",
-      "The storefront and dining room were finished to the same standard, giving the outlet a strong street-level presence as well as an inviting space to sit in.",
+      "The dining room pairs red banquette booths with marble-top tables under a black-and-red exposed ceiling, giving the space a bright, high-energy feel.",
+      "A run of bold slogan feature walls — “Layers of Joy”, “Sliced for Sharing”, “Stacked with Joy” — turns the main wall into the room's centrepiece, finished to brand standard throughout.",
     ],
     images: [
       "/images/portfolio/pizza-hut-tiong-bahru/1.jpg",
       "/images/portfolio/pizza-hut-tiong-bahru/2.jpg",
-      "/images/portfolio/pizza-hut-tiong-bahru/3.jpg",
-      "/images/portfolio/pizza-hut-tiong-bahru/4.jpg",
-      "/images/portfolio/pizza-hut-tiong-bahru/5.jpg",
-      "/images/portfolio/pizza-hut-tiong-bahru/6.jpg",
-    ],
-  },
-  {
-    slug: "office-mbfc",
-    title: "Corporate Office Fit-Out, MBFC",
-    category: "commercial",
-    type: "Office",
-    location: "Marina Bay Financial Centre",
-    year: "2026",
-    summary:
-      "A high-end corporate office fit-out at MBFC, spanning reception, breakout lounge, and boardroom.",
-    description: [
-      "This fit-out delivered a full corporate office floor — reception, breakout lounge, and boardroom — finished with warm timber panelling and a skyline-facing banquette lounge.",
-      "The boardroom was built to host large meetings comfortably, with a materials palette that carries through consistently from the reception area.",
-    ],
-    images: [
-      "/images/portfolio/office-mbfc/1.jpg",
-      "/images/portfolio/office-mbfc/2.jpg",
-      "/images/portfolio/office-mbfc/3.jpg",
-      "/images/portfolio/office-mbfc/4.jpg",
     ],
   },
   {
@@ -166,27 +223,59 @@ export const projects: Project[] = [
     ],
   },
   {
-    // Residential projects are always genericised to the district — never the
-    // street, block, or unit — so a client's home address can't be identified.
-    slug: "residential-potong-pasir",
-    title: "Landed Home, Potong Pasir",
-    category: "residential",
-    type: "Landed Property",
-    location: "Potong Pasir",
+    slug: "kfc-compass-vale",
+    title: "KFC Compass Vale",
+    category: "commercial",
+    type: "F&B — Quick Service Restaurant",
+    location: "Compass Vale",
     year: "2026",
     summary:
-      "A full landed-property renovation with a double-height living room, home theatre lounge, and private lift.",
+      "A KFC quick-service fit-out at Compass Vale, centred on a self-order kiosk corridor for fast, queue-free ordering.",
     description: [
-      "This landed home renovation spans a double-height living room with floor-to-ceiling windows, a dedicated home theatre lounge, and a marble-clad foyer with a bronze-framed private lift.",
-      "Custom carpentry runs throughout — from mirrored wardrobes in the foyer to a full built-in wardrobe wall along the corridor — finished to a consistent standard across every room.",
+      "This fit-out delivered a full quick-service KFC unit, with a self-order kiosk corridor as the centrepiece of the customer flow.",
+      "Branded wall graphics and a promotional display screen line the corridor, finished in the same materials palette as our other KFC projects.",
+    ],
+    images: ["/images/portfolio/kfc-compass-vale/1.jpg"],
+  },
+  {
+    slug: "office-mbfc",
+    title: "Corporate Office Fit-Out, MBFC",
+    category: "commercial",
+    type: "Office",
+    location: "Marina Bay Financial Centre",
+    year: "2026",
+    summary:
+      "A high-end corporate office fit-out at MBFC, spanning reception, breakout lounge, and boardroom.",
+    description: [
+      "This fit-out delivered a full corporate office floor — reception, breakout lounge, and boardroom — finished with warm timber panelling and a skyline-facing banquette lounge.",
+      "The boardroom was built to host large meetings comfortably, with a materials palette that carries through consistently from the reception area.",
     ],
     images: [
-      "/images/portfolio/residential-potong-pasir/1.jpg",
-      "/images/portfolio/residential-potong-pasir/2.jpg",
-      "/images/portfolio/residential-potong-pasir/3.jpg",
-      "/images/portfolio/residential-potong-pasir/4.jpg",
-      "/images/portfolio/residential-potong-pasir/5.jpg",
-      "/images/portfolio/residential-potong-pasir/6.jpg",
+      "/images/portfolio/office-mbfc/1.jpg",
+      "/images/portfolio/office-mbfc/2.jpg",
+      "/images/portfolio/office-mbfc/3.jpg",
+      "/images/portfolio/office-mbfc/4.jpg",
+    ],
+  },
+  {
+    slug: "kfc-plq",
+    title: "KFC Paya Lebar Quarter",
+    category: "commercial",
+    type: "F&B — Quick Service Restaurant",
+    location: "Paya Lebar Quarter",
+    year: "2025",
+    summary:
+      "A full KFC storefront and dining fit-out at Paya Lebar Quarter, from the entrance through to branded booth seating.",
+    description: [
+      "This fit-out covered the complete customer journey — storefront entrance, order counter, and dining room — built to brand standard while holding up to daily quick-service volume.",
+      "Red-and-black booth seating, a wood-panelled feature wall, and a backlit “11 Herbs & Spices” wall anchor the dining area, finished to a standard that photographs as well as it performs.",
+    ],
+    images: [
+      "/images/portfolio/kfc-plq/1.jpg",
+      "/images/portfolio/kfc-plq/2.jpg",
+      "/images/portfolio/kfc-plq/3.jpg",
+      "/images/portfolio/kfc-plq/4.jpg",
+      "/images/portfolio/kfc-plq/5.jpg",
     ],
   },
 ];

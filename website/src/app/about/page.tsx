@@ -77,7 +77,7 @@ export default function AboutPage() {
             <RevealOnScroll>
               <div className="relative aspect-[4/5] overflow-hidden bg-ink-soft">
                 <Image
-                  src="/images/portfolio/office-mbfc/2.jpg"
+                  src="/images/portfolio/office-mbfc/1.jpg"
                   alt="Completed office fit-out by Reno Box"
                   fill
                   sizes="(min-width: 1024px) 45vw, 90vw"

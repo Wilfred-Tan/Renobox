@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { PageHero } from "@/components/sections/PageHero";
 import { PortfolioGrid } from "@/components/sections/PortfolioGrid";
+import { ClientLogoGrid } from "@/components/sections/ClientLogoGrid";
 import { projects } from "@/lib/data/projects";
 import { site } from "@/lib/data/site";
 
@@ -23,6 +26,20 @@ export default function PortfolioPage() {
       <section className="py-24 md:py-32">
         <Container size="wide">
           <PortfolioGrid projects={projects} />
+        </Container>
+      </section>
+
+      {/* Past Clients */}
+      <section className="bg-paper-dim py-24 md:py-32">
+        <Container size="wide">
+          <RevealOnScroll>
+            <SectionHeading
+              eyebrow="Past Clients"
+              title="Businesses that have trusted us."
+              description="From F&B chains to retail stores and corporate offices, these are some of the brands we've delivered fit-outs and renovations for across Singapore."
+            />
+          </RevealOnScroll>
+          <ClientLogoGrid />
         </Container>
       </section>
     </>
