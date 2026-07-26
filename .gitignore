@@ -35,3 +35,6 @@ desktop.ini
 
 # ---- Deploy ----
 .vercel
+
+# ---- Sensitive internal business data (never commit) ----
+Company Project List/
