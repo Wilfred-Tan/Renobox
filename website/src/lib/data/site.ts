@@ -32,7 +32,6 @@ export const site = {
   certifications: [
     { label: "BCA Registered Contractor" },
     { label: "CaseTrust Accredited" },
-    { label: "HDB Licensed Renovation Contractor" },
   ],
   // Only using stats we can actually stand behind. UEN 198500568M implies an
   // incorporation year of 1985 (pending confirmation) — ask for 1-2 more real
@@ -46,3 +45,9 @@ export const site = {
 export const whatsappHref = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(
   site.whatsappDefaultMessage,
 )}`;
+
+// Confirmed against the business's actual Google Maps listing (search "Reno Box
+// Singapore" — a "Reno Box Pte. Ltd." carpenter listing at this exact address).
+export const googleMapsEmbedSrc = `https://www.google.com/maps?q=${encodeURIComponent(
+  `${site.legalName}, ${site.address.line1}, ${site.address.line2}`,
+)}&output=embed`;

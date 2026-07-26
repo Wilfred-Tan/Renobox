@@ -8,9 +8,8 @@ import {
 } from "@heroicons/react/24/outline";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/sections/PageHero";
-import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
 import { QuoteForm } from "@/components/forms/QuoteForm";
-import { site, whatsappHref } from "@/lib/data/site";
+import { site, whatsappHref, googleMapsEmbedSrc } from "@/lib/data/site";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -79,7 +78,7 @@ export default function ContactPage() {
                   <span className="mt-4 block text-xs font-semibold tracking-wide text-muted uppercase">
                     {channel.label}
                   </span>
-                  <span className="mt-1 block font-heading text-lg font-medium text-ink">
+                  <span className="mt-1 block font-heading text-lg font-medium break-words text-ink">
                     {channel.value}
                   </span>
                 </>
@@ -116,7 +115,15 @@ export default function ContactPage() {
             </div>
 
             <div className="flex flex-col gap-8">
-              <PlaceholderImage label={`Map — ${site.address.line2}`} aspect="aspect-square" />
+              <div className="relative aspect-square overflow-hidden border border-ink/10">
+                <iframe
+                  src={googleMapsEmbedSrc}
+                  title={`Map — ${site.address.line1}, ${site.address.line2}`}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="absolute inset-0 h-full w-full border-0"
+                />
+              </div>
               <div className="flex items-start gap-3">
                 <ClockIcon className="mt-0.5 h-5 w-5 shrink-0 text-gold-deep" aria-hidden="true" />
                 <div>

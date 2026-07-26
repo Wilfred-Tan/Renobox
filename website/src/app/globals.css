@@ -69,6 +69,10 @@
 
 html {
   scroll-behavior: smooth;
+  /* Dark, not paper: iOS Safari paints the root background in the rubber-band
+     overscroll area. Both ends of the page (hero and footer) are `ink`, so this
+     keeps overscroll seamless instead of flashing a cream/white band. */
+  background: var(--color-ink);
 }
 
 body {

@@ -3,12 +3,18 @@ import { projects } from "@/lib/data/projects";
 import { siteUrl } from "@/lib/data/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes = ["", "/commercial", "/residential", "/portfolio", "/about", "/contact"].map(
-    (path) => ({
-      url: `${siteUrl}${path}`,
-      lastModified: new Date(),
-    }),
-  );
+  const staticRoutes = [
+    "",
+    "/commercial",
+    "/residential",
+    "/portfolio",
+    "/about",
+    "/contact",
+    "/leave-a-review",
+  ].map((path) => ({
+    url: `${siteUrl}${path}`,
+    lastModified: new Date(),
+  }));
 
   const projectRoutes = projects.map((project) => ({
     url: `${siteUrl}/portfolio/${project.slug}`,

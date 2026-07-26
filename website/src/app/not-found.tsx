@@ -3,7 +3,7 @@ import { Container } from "@/components/ui/Container";
 
 export default function NotFound() {
   return (
-    <section className="flex min-h-[70vh] items-center bg-paper">
+    <section className="flex min-h-[70dvh] items-center bg-paper">
       <Container size="narrow" className="py-24 text-center">
         <p className="text-sm font-semibold tracking-[0.2em] text-gold-deep uppercase">404</p>
         <h1 className="mt-4 font-heading text-4xl font-semibold text-ink md:text-5xl">

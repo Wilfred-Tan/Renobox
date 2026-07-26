@@ -45,7 +45,7 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${bricolage.variable} ${inter.variable} ${arvo.variable}`}
     >
-      <body className="flex min-h-screen flex-col bg-paper text-ink antialiased">
+      <body className="flex min-h-dvh flex-col bg-paper text-ink antialiased">
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:rounded-full focus:bg-gold focus:px-5 focus:py-3 focus:text-sm focus:font-medium focus:text-ink"

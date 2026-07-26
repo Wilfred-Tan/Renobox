@@ -44,7 +44,7 @@ export default async function ProjectDetailPage({
 
   return (
     <>
-      <section className="relative flex min-h-[70vh] items-end overflow-hidden bg-ink">
+      <section className="relative flex min-h-[70dvh] items-end overflow-hidden bg-ink">
         {project.images.length > 0 ? (
           <Image
             src={project.images[0]}

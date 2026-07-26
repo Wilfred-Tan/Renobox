@@ -13,15 +13,30 @@ import { ServiceCard } from "@/components/cards/ServiceCard";
 import { ProjectCard } from "@/components/cards/ProjectCard";
 import { ProcessStep } from "@/components/cards/ProcessStep";
 import { FeatureItem } from "@/components/cards/FeatureItem";
-import { TestimonialCarousel } from "@/components/sections/TestimonialCarousel";
 import { site } from "@/lib/data/site";
 import { projects } from "@/lib/data/projects";
-import { testimonials } from "@/lib/data/testimonials";
 
 // Balance the teaser across both audiences rather than a blind first-N slice.
 const featuredProjects = [
   ...projects.filter((p) => p.category === "commercial").slice(0, 4),
   ...projects.filter((p) => p.category === "residential").slice(0, 2),
+];
+
+// Hand-picked across all projects in each category — not a generic slice —
+// for the "What We Do" slideshow cards. Update if a stronger shot turns up.
+const commercialShowcase = [
+  "/images/portfolio/september-coffee/1.jpg",
+  "/images/portfolio/kfc-amk/2.jpg",
+  "/images/portfolio/kfc-downtown-east/2.jpg",
+  "/images/portfolio/pizza-hut-tiong-bahru/1.jpg",
+  "/images/portfolio/office-mbfc/1.jpg",
+];
+const residentialShowcase = [
+  "/images/portfolio/residential-potong-pasir/1.jpg",
+  "/images/portfolio/residential-bidadari/4.jpg",
+  "/images/portfolio/residential-potong-pasir/4.jpg",
+  "/images/portfolio/residential-bidadari/1.jpg",
+  "/images/portfolio/residential-potong-pasir/3.jpg",
 ];
 
 const processSteps = [
@@ -51,7 +66,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative flex min-h-[92vh] items-end overflow-hidden bg-ink">
+      <section className="relative flex min-h-[92dvh] items-end overflow-hidden bg-ink">
         <PlaceholderImage
           label="Hero — Commercial & Residential Work"
           aspect=""
@@ -120,6 +135,7 @@ export default function HomePage() {
                 href="/commercial"
                 title="Commercial & F&B Fit-Outs"
                 imageLabel="Commercial & F&B"
+                images={commercialShowcase}
                 description="Restaurants, cafes, retail, and offices — designed and built around licensing timelines and opening-day deadlines."
               />
             </RevealOnScroll>
@@ -128,6 +144,7 @@ export default function HomePage() {
                 href="/residential"
                 title="Residential Renovation"
                 imageLabel="Residential"
+                images={residentialShowcase}
                 description="HDB, condo, and landed renovations, from space planning through custom carpentry to final handover."
               />
             </RevealOnScroll>
@@ -222,14 +239,21 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-24 md:py-32">
-        <Container size="wide">
-          <RevealOnScroll>
-            <SectionHeading eyebrow="Client Feedback" title="What clients say after handover." />
-          </RevealOnScroll>
-          <div className="mt-14">
-            <TestimonialCarousel testimonials={testimonials} />
+      {/* Reviews CTA — no published reviews yet; this collects submissions for
+          our team to vet before anything goes live (see ReviewForm). */}
+      <section className="border-y border-ink/10 py-16">
+        <Container size="default">
+          <div className="flex flex-col items-center gap-4 text-center">
+            <p className="font-heading text-2xl font-semibold text-ink md:text-3xl">
+              Worked with us on a project?
+            </p>
+            <p className="max-w-md text-muted">
+              We&apos;d love to hear how it went — every submission is read by our team before
+              it&apos;s published.
+            </p>
+            <Button href="/leave-a-review" variant="secondary" size="lg">
+              Leave a Review
+            </Button>
           </div>
         </Container>
       </section>

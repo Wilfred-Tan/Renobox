@@ -3,10 +3,10 @@ import { SparklesIcon, ScaleIcon, ShieldCheckIcon, HandRaisedIcon } from "@heroi
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import Image from "next/image";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { FeatureItem } from "@/components/cards/FeatureItem";
 import { PageHero } from "@/components/sections/PageHero";
+import { ClientLogoGrid } from "@/components/sections/ClientLogoGrid";
 import { site } from "@/lib/data/site";
 
 export const metadata: Metadata = {
@@ -53,11 +53,6 @@ const certifications = [
     description:
       "Accredited under the CaseTrust scheme for fair trading practices, giving clients added protection and a clear channel for recourse.",
   },
-  {
-    title: "HDB Licensed Renovation Contractor",
-    description:
-      "Approved to carry out renovation works in HDB flats, including permit submissions for authorised hacking and installation works.",
-  },
 ];
 
 export default function AboutPage() {
@@ -75,14 +70,12 @@ export default function AboutPage() {
         <Container size="wide">
           <div className="grid gap-14 lg:grid-cols-2 lg:items-center">
             <RevealOnScroll>
-              <div className="relative aspect-[4/5] overflow-hidden bg-ink-soft">
-                <Image
-                  src="/images/portfolio/office-mbfc/1.jpg"
-                  alt="Completed office fit-out by Reno Box"
-                  fill
-                  sizes="(min-width: 1024px) 45vw, 90vw"
-                  className="object-cover"
-                />
+              <div className="bg-paper-dim p-8 md:p-10">
+                <p className="mb-6 flex items-center gap-3 text-xs font-semibold tracking-[0.2em] text-gold-deep uppercase">
+                  <span className="h-px w-8 bg-gold" />
+                  Select Corporate Clients &amp; Partners
+                </p>
+                <ClientLogoGrid />
               </div>
             </RevealOnScroll>
             <RevealOnScroll delay={100}>
@@ -148,7 +141,7 @@ export default function AboutPage() {
               title="Licensed and accredited to work across Singapore."
             />
           </RevealOnScroll>
-          <div className="mt-14 grid gap-8 md:grid-cols-3">
+          <div className="mt-14 grid gap-8 md:grid-cols-2">
             {certifications.map((cert, i) => (
               <RevealOnScroll key={cert.title} delay={i * 100}>
                 <div className="h-full border-t-2 border-gold pt-6">
