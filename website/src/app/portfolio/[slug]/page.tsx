@@ -113,18 +113,19 @@ export default async function ProjectDetailPage({
               ))}
 
               {project.images.length > 1 && (
-                <div className="mt-4 grid grid-cols-2 gap-4">
+                <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
                   {project.images.slice(1).map((src, i) => {
                     // Landscape photos get the full width of the grid at a 3:2
-                    // tile; portrait photos keep a single 4:5 column. Forcing a
-                    // wide photo into the tall tile cropped away half the frame.
+                    // tile; portrait photos pair up two-to-a-row from sm: up.
+                    // Below sm:, everything stacks in one column so a lone
+                    // portrait photo never leaves an empty cell beside it.
                     const wide = isLandscape(src);
                     return (
                       <div
                         key={src}
                         className={
                           wide
-                            ? "relative col-span-2 aspect-[3/2] overflow-hidden bg-ink-soft"
+                            ? "relative aspect-[3/2] overflow-hidden bg-ink-soft sm:col-span-2"
                             : "relative aspect-[4/5] overflow-hidden bg-ink-soft"
                         }
                       >
@@ -137,7 +138,7 @@ export default async function ProjectDetailPage({
                           sizes={
                             wide
                               ? "(min-width: 1024px) 65vw, 100vw"
-                              : "(min-width: 1024px) 28vw, 45vw"
+                              : "(min-width: 1024px) 28vw, (min-width: 640px) 45vw, 100vw"
                           }
                           className="object-cover"
                         />

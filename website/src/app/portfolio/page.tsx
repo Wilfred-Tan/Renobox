@@ -18,7 +18,7 @@ export default function PortfolioPage() {
         eyebrow="Portfolio"
         title="Selected work across Singapore."
         description={`${site.stats[1].value}+ projects completed over ${site.stats[0].value}+ years — most from before we kept a consistent photo record. Here's a recent, well-documented selection; filter by category to see relevant work.`}
-        imageLabel="Portfolio"
+        imageSrc="/images/portfolio/pizza-hut-tiong-bahru/2.jpg"
       />
       <section className="py-24 md:py-32">
         <Container size="wide">

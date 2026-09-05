@@ -7,8 +7,9 @@ export function LogoMark({ className }: { className?: string }) {
       className={cn("shrink-0", className)}
       aria-hidden="true"
     >
-      <rect x="8" y="8" width="64" height="64" fill="none" stroke="currentColor" strokeWidth="8" />
-      <rect x="40" y="40" width="64" height="64" fill="none" stroke="currentColor" strokeWidth="8" />
+      <rect x="8" y="8" width="64" height="64" rx="10" fill="none" stroke="currentColor" strokeWidth="8" />
+      <rect x="40" y="40" width="64" height="64" rx="10" fill="none" stroke="currentColor" strokeWidth="8" />
+      <rect x="40" y="40" width="32" height="32" rx="6" fill="currentColor" />
     </svg>
   );
 }

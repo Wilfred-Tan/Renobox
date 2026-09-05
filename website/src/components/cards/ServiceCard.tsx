@@ -1,8 +1,15 @@
+"use client";
+
+import { useRef } from "react";
 import Link from "next/link";
 import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
-import { ServiceSlideshow } from "@/components/cards/ServiceSlideshow";
+import { ServiceSlideshow, type ServiceSlideshowHandle } from "@/components/cards/ServiceSlideshow";
 import { CornerFrame } from "@/components/ui/CornerFrame";
+
+// Swipe threshold in pixels — must be a clearly horizontal, deliberate drag so
+// it doesn't fire on an incidental touch or a vertical page-scroll gesture.
+const SWIPE_THRESHOLD = 40;
 
 export function ServiceCard({
   href,
@@ -19,11 +26,53 @@ export function ServiceCard({
   images?: string[];
   cta?: string;
 }) {
+  const slideshowRef = useRef<ServiceSlideshowHandle>(null);
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
+  const didSwipe = useRef(false);
+
+  // The full-card <Link> below sits on top of the photo (so tapping anywhere
+  // opens the project), which also means it — not the slideshow — is what
+  // actually receives touch events there. These handlers live on the card
+  // root (an ancestor of that Link) so they still see the events via bubbling.
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const t = e.touches[0];
+    touchStart.current = { x: t.clientX, y: t.clientY };
+    didSwipe.current = false;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStart.current) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - touchStart.current.x;
+    const dy = t.clientY - touchStart.current.y;
+    touchStart.current = null;
+    if (Math.abs(dx) > SWIPE_THRESHOLD && Math.abs(dx) > Math.abs(dy)) {
+      didSwipe.current = true;
+      if (dx < 0) slideshowRef.current?.next();
+      else slideshowRef.current?.prev();
+    }
+  };
+
+  // Capture phase, so this runs before the Link's own click handler and can
+  // stop a swipe from also being read as a tap that navigates away.
+  const handleClickCapture = (e: React.MouseEvent) => {
+    if (didSwipe.current) {
+      e.preventDefault();
+      e.stopPropagation();
+      didSwipe.current = false;
+    }
+  };
+
   return (
-    <div className="group relative flex flex-col overflow-hidden border border-ink/10 transition-colors duration-300 hover:border-gold/40">
-      <div className="relative aspect-[4/3] overflow-hidden">
+    <div
+      className="group relative flex flex-col overflow-hidden border border-ink/10 transition-colors duration-300 hover:border-gold/40"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      onClickCapture={handleClickCapture}
+    >
+      <div className="relative aspect-[4/3] touch-pan-y overflow-hidden">
         {images && images.length > 0 ? (
-          <ServiceSlideshow images={images} label={imageLabel} />
+          <ServiceSlideshow ref={slideshowRef} images={images} label={imageLabel} />
         ) : (
           <PlaceholderImage
             label={imageLabel}

@@ -63,7 +63,7 @@ export default function ContactPage() {
         eyebrow="Contact"
         title="Let's talk about your project."
         description="Reach out on WhatsApp for the fastest response, or send an enquiry with your project details and we'll come back with a fixed quote."
-        imageLabel="Contact Us"
+        imageSrc="/images/portfolio/kfc-amk/1.jpg"
       />
 
       <section className="py-20 md:py-28">

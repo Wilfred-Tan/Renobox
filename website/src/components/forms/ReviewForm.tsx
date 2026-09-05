@@ -115,6 +115,8 @@ export function ReviewForm() {
           </option>
           <option value="commercial">Commercial / F&amp;B Fit-Out</option>
           <option value="residential">Residential Renovation</option>
+          <option value="id-partnership">Interior Design Firm Partnership</option>
+          <option value="furniture">Bespoke Furniture</option>
         </select>
       </Field>
       <Field label="Rating" htmlFor="rating-1">

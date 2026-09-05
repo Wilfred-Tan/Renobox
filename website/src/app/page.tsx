@@ -3,10 +3,10 @@ import {
   DocumentCheckIcon,
   UserGroupIcon,
 } from "@heroicons/react/24/outline";
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
 import { StatCounter } from "@/components/ui/StatCounter";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { ServiceCard } from "@/components/cards/ServiceCard";
@@ -46,9 +46,9 @@ const processSteps = [
       "We walk the space, understand how you'll use it, and align on budget and timeline before anything is drawn.",
   },
   {
-    title: "Design & Fixed Quote",
+    title: "Scope & Fixed Quote",
     description:
-      "3D visualisation and an itemised, fixed quote — so you sign off knowing exactly what you're paying for.",
+      "We work from your drawings if you already have them, or bring in a designer if you don't — either way, you get an itemised, fixed quote before anything is built.",
   },
   {
     title: "Build & Manage",
@@ -67,16 +67,19 @@ export default function HomePage() {
     <>
       {/* Hero */}
       <section className="relative flex min-h-[92dvh] items-end overflow-hidden bg-ink">
-        <PlaceholderImage
-          label="Hero — Commercial & Residential Work"
-          aspect=""
-          className="absolute inset-0"
+        <Image
+          src="/images/portfolio/residential-bidadari/2.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="absolute inset-0 object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-ink/20" />
         <Container size="wide" className="relative z-10 pt-40 pb-20 md:pt-48 md:pb-28">
           <p className="mb-6 flex animate-fade-up items-center gap-3 text-xs font-semibold tracking-[0.25em] text-gold-bright uppercase">
             <span className="h-px w-8 bg-gold-bright" />
-            Commercial &amp; Residential &middot; Singapore
+            Renovation &amp; Fit-Out &middot; Singapore
           </p>
           <h1 className="max-w-4xl animate-fade-up text-5xl leading-[1.02] font-semibold tracking-tight text-balance text-paper [animation-delay:120ms] font-heading md:text-7xl lg:text-8xl">
             We renovate spaces people <span className="text-gold-bright">remember.</span>
@@ -84,8 +87,9 @@ export default function HomePage() {
           <p className="mt-8 max-w-xl animate-fade-up text-lg leading-relaxed text-paper/70 [animation-delay:240ms] md:text-xl">
             {site.name}
             {" "}
-            designs and builds F&amp;B fit-outs, commercial spaces, and residential renovations
-            across Singapore — engineered to perform as well as they photograph.
+            delivers renovation and fit-out projects for homeowners, brand teams, and interior
+            design firms across Singapore — with bespoke furniture and design support available
+            when you need it.
           </p>
           <div className="mt-10 flex animate-fade-up flex-col gap-4 [animation-delay:360ms] sm:flex-row">
             <Button href="/portfolio" size="lg">
@@ -126,7 +130,7 @@ export default function HomePage() {
             <SectionHeading
               eyebrow="What We Do"
               title="Two crafts, one standard of delivery."
-              description="Whether it's a restaurant that needs to open on schedule or a home that needs to feel right for years, the same design and project-management discipline applies."
+              description="Whether it's a restaurant that needs to open on schedule, a home that needs to feel right for years, or a design firm's project that needs a dependable build partner, the same execution and project-management discipline applies."
             />
           </RevealOnScroll>
           <div className="mt-14 grid gap-8 md:grid-cols-2">
@@ -136,7 +140,7 @@ export default function HomePage() {
                 title="Commercial & F&B Fit-Outs"
                 imageLabel="Commercial & F&B"
                 images={commercialShowcase}
-                description="Restaurants, cafes, retail, and offices — designed and built around licensing timelines and opening-day deadlines."
+                description="Restaurants, cafes, retail, and offices — for landlords, brand teams, and design firms — built around licensing timelines and opening-day deadlines."
               />
             </RevealOnScroll>
             <RevealOnScroll delay={160}>
@@ -145,7 +149,7 @@ export default function HomePage() {
                 title="Residential Renovation"
                 imageLabel="Residential"
                 images={residentialShowcase}
-                description="HDB, condo, and landed renovations, from space planning through custom carpentry to final handover."
+                description="HDB, condo, and landed renovations, from space planning through custom carpentry and bespoke furniture to final handover."
               />
             </RevealOnScroll>
           </div>
@@ -214,8 +218,8 @@ export default function HomePage() {
             <RevealOnScroll delay={0}>
               <FeatureItem
                 icon={WrenchScrewdriverIcon}
-                title="In-House Design + Build"
-                description="One team owns design and construction, so nothing gets lost in translation between drawing and site."
+                title="On-Time, On-Budget Delivery"
+                description="Renovation execution is our core trade — for homeowners, brands, and the design firms who trust us to build what they've drawn."
                 tone="light"
               />
             </RevealOnScroll>

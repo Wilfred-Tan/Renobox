@@ -17,6 +17,10 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // LAN IP for testing the dev server from a phone on the same Wi-Fi, plus
+  // Tailscale IPs for remote viewers off the LAN. Next.js 16 blocks
+  // cross-origin dev requests (HMR, RSC) by default.
+  allowedDevOrigins: ["192.168.1.87", "192.168.1.75", "100.91.124.122"],
   async headers() {
     return [
       {

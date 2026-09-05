@@ -88,7 +88,7 @@ export default function ResidentialPage() {
         eyebrow="Residential"
         title="A renovation that's designed around how you live."
         description="HDB, condo, and landed homes — planned with 3D visualisation, priced with a fixed quote, and managed by one team from first sketch to key handover."
-        imageLabel="Residential Renovation"
+        imageSrc="/images/portfolio/residential-potong-pasir/2.jpg"
       >
         <div className="flex flex-col gap-4 sm:flex-row">
           <Button href="/contact" size="lg">

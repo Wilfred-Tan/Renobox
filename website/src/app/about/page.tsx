@@ -12,7 +12,7 @@ import { site } from "@/lib/data/site";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Design and construction under one roof — the team behind Reno Box's commercial and residential renovation work in Singapore.",
+    "Renovation execution and delivery — the team behind Reno Box's work for homeowners, brands, and design firms across Singapore.",
 };
 
 const values = [
@@ -60,9 +60,9 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About Us"
-        title="Design and construction, under one roof."
-        description="We're a Singapore-based design-and-build studio working across commercial fit-outs and residential renovation."
-        imageLabel="About the Studio"
+        title="Renovation is our trade. Delivery is our promise."
+        description="We're a Singapore-based renovation contractor, built for homeowners, commercial brands, and the interior design firms who partner with us to execute their projects — with design support available if you need it."
+        imageSrc="/images/portfolio/september-coffee/2.jpg"
       />
 
       {/* Story */}
@@ -90,15 +90,18 @@ export default function AboutPage() {
                 <p>
                   {site.name}
                   {" "}
-                  has spent {site.stats[0].value}+ years designing and building spaces across
+                  has spent {site.stats[0].value}+ years renovating and building spaces across
                   Singapore — long enough to have refined a process that holds up under a tight F&amp;B
                   opening deadline and a homeowner&apos;s evolving brief alike.
                 </p>
                 <p>
                   That range shows in the client list: national F&amp;B chains rolling out new
-                  outlets, corporate offices fitting out a full floor, and homeowners renovating a
-                  landed property room by room. The same design-and-build team and fixed-quote
-                  process applies across all of it.
+                  outlets, corporate offices fitting out a full floor, homeowners renovating a
+                  landed property room by room, and interior design firms who bring us in to
+                  execute what they&apos;ve designed. We also build bespoke furniture as its own
+                  line of work. The same fixed-quote, single-point-of-contact process applies
+                  across all of it — and if you need design done as well as built, we can provide
+                  that too.
                 </p>
                 <p>
                   Today that adds up to {site.stats[1].value}+ projects completed — including the

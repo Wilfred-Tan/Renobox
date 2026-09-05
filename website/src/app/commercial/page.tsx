@@ -20,7 +20,7 @@ import { whatsappHref } from "@/lib/data/site";
 export const metadata: Metadata = {
   title: "Commercial & F&B Fit-Outs",
   description:
-    "Restaurant, cafe, retail, and office fit-outs in Singapore, designed and built around your opening date.",
+    "Restaurant, cafe, retail, and office fit-outs in Singapore, built around your opening date.",
 };
 
 const services = [
@@ -88,7 +88,7 @@ export default function CommercialPage() {
         eyebrow="Commercial & F&B"
         title="Fit-outs built around your opening date."
         description="Every day a unit sits unopened is lost revenue. We design and build restaurants, cafes, retail, and offices against fixed timelines, without cutting corners on finish."
-        imageLabel="Commercial & F&B Fit-Outs"
+        imageSrc="/images/portfolio/kfc-downtown-east/1.jpg"
       >
         <div className="flex flex-col gap-4 sm:flex-row">
           <Button href="/contact" size="lg">

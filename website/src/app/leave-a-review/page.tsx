@@ -15,7 +15,7 @@ export default function LeaveAReviewPage() {
         eyebrow="Leave a Review"
         title="Tell us how your project went."
         description="Whether it was a quick-service fit-out or a full home renovation, we'd like to hear about it — good or bad."
-        imageLabel="Leave a Review"
+        imageSrc="/images/portfolio/residential-bidadari/3.jpg"
       />
 
       <section className="py-20 md:py-28">

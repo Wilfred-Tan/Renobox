@@ -1,21 +1,22 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useImperativeHandle, useRef, useState, forwardRef } from "react";
 import Image from "next/image";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { cn } from "@/lib/utils";
 
 const AUTOPLAY_MS = 5000;
 
-export function ServiceSlideshow({
-  images,
-  label,
-  priority = false,
-}: {
+export type ServiceSlideshowHandle = {
+  next: () => void;
+  prev: () => void;
+};
+
+export const ServiceSlideshow = forwardRef<ServiceSlideshowHandle, {
   images: string[];
   label: string;
   priority?: boolean;
-}) {
+}>(function ServiceSlideshow({ images, label, priority = false }, ref) {
   const [index, setIndex] = useState(0);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -41,6 +42,11 @@ export function ServiceSlideshow({
     setIndex((i) => (direction === "next" ? (i + 1) % images.length : (i - 1 + images.length) % images.length));
     startTimer();
   };
+
+  useImperativeHandle(ref, () => ({
+    next: () => go("next"),
+    prev: () => go("prev"),
+  }));
 
   return (
     <div
@@ -105,4 +111,4 @@ export function ServiceSlideshow({
       )}
     </div>
   );
-}
+});

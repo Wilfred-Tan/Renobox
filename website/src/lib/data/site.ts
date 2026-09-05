@@ -4,9 +4,9 @@ export const siteUrl = "https://www.renobox.com.sg";
 export const site = {
   name: "Reno Box",
   legalName: "Reno Box Pte Ltd",
-  tagline: "Renovation & Design, Singapore",
+  tagline: "Renovation & Build, Singapore",
   shortDescription:
-    "We design and build commercial fit-outs and residential renovations across Singapore — from first sketch to handover.",
+    "We deliver commercial fit-outs and residential renovations across Singapore — for homeowners, brands, and design firms — on time and on budget.",
   phoneDisplay: "+65 9679 1538",
   phoneHref: "tel:+6596791538",
   // Office landline — shown alongside the mobile number on the Contact page.

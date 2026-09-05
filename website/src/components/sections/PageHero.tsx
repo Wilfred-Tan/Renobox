@@ -1,22 +1,22 @@
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
-import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
 
 export function PageHero({
   eyebrow,
   title,
   description,
-  imageLabel,
+  imageSrc,
   children,
 }: {
   eyebrow: string;
   title: React.ReactNode;
   description?: string;
-  imageLabel: string;
+  imageSrc: string;
   children?: React.ReactNode;
 }) {
   return (
     <section className="relative flex min-h-[60dvh] items-end overflow-hidden bg-ink">
-      <PlaceholderImage label={imageLabel} aspect="" className="absolute inset-0" />
+      <Image src={imageSrc} alt="" fill priority sizes="100vw" className="object-cover" />
       <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/25" />
       <Container size="wide" className="relative z-10 pt-40 pb-16 md:pt-44 md:pb-20">
         <p className="mb-6 flex animate-fade-up items-center gap-3 text-xs font-semibold tracking-[0.25em] text-gold-bright uppercase">
