@@ -1,8 +1,8 @@
 export const mainNav = [
-  { label: "Commercial & F&B", href: "/commercial" },
-  { label: "Residential", href: "/residential" },
+  { label: "Home", href: "/" },
   { label: "Portfolio", href: "/portfolio" },
-  { label: "About", href: "/about" },
+  { label: "Partnerships", href: "/partnerships" },
+  { label: "About Us", href: "/about" },
 ] as const;
 
 export const footerServiceLinks = [
@@ -12,5 +12,5 @@ export const footerServiceLinks = [
   { label: "HDB Renovation", href: "/residential" },
   { label: "Condo & Landed Renovation", href: "/residential" },
   { label: "Bespoke Furniture", href: "/contact" },
-  { label: "Interior Design Firm Partnerships", href: "/contact" },
+  { label: "Interior Design Firm Partnerships", href: "/partnerships" },
 ] as const;

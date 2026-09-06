@@ -23,6 +23,10 @@ export default function PortfolioPage() {
       <section className="py-24 md:py-32">
         <Container size="wide">
           <PortfolioGrid projects={projects} />
+          <p className="mt-16 text-center text-sm text-muted">
+            This portfolio&apos;s under construction too — watch this space as we add more of our
+            work.
+          </p>
         </Container>
       </section>
     </>

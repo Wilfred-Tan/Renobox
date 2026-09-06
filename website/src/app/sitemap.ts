@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/residential",
     "/portfolio",
     "/about",
+    "/partnerships",
     "/contact",
     "/leave-a-review",
   ].map((path) => ({

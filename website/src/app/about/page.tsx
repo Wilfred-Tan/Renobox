@@ -26,7 +26,7 @@ const values = [
     icon: ScaleIcon,
     title: "Transparency",
     description:
-      "Fixed quotes and plain-language contracts. If something changes mid-project, you approve the cost before we proceed.",
+      "Competitively priced quotes and plain-language contracts. If something changes mid-project, you approve the cost before we proceed.",
   },
   {
     icon: ShieldCheckIcon,
@@ -75,7 +75,7 @@ export default function AboutPage() {
                   <span className="h-px w-8 bg-gold" />
                   Select Corporate Clients &amp; Partners
                 </p>
-                <ClientLogoGrid />
+                <ClientLogoGrid tileBg="bg-paper-dim" />
               </div>
             </RevealOnScroll>
             <RevealOnScroll delay={100}>
@@ -99,9 +99,9 @@ export default function AboutPage() {
                   outlets, corporate offices fitting out a full floor, homeowners renovating a
                   landed property room by room, and interior design firms who bring us in to
                   execute what they&apos;ve designed. We also build bespoke furniture as its own
-                  line of work. The same fixed-quote, single-point-of-contact process applies
-                  across all of it — and if you need design done as well as built, we can provide
-                  that too.
+                  line of work. The same competitively priced, single-point-of-contact process
+                  applies across all of it — and if you need design done as well as built, we can
+                  provide that too.
                 </p>
                 <p>
                   Today that adds up to {site.stats[1].value}+ projects completed — including the

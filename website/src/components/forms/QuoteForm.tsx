@@ -22,9 +22,14 @@ const timelines = [
 const inputClass =
   "w-full rounded-lg border border-ink/15 bg-paper px-4 py-3 text-ink placeholder:text-muted/60 transition-colors focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30";
 
+const fileInputClass =
+  "w-full rounded-lg border border-ink/15 bg-paper px-4 py-3 text-sm text-muted transition-colors file:mr-4 file:cursor-pointer file:rounded-md file:border-0 file:bg-gold file:px-4 file:py-2 file:text-sm file:font-semibold file:text-ink file:transition-colors hover:file:bg-gold-bright focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30";
+
 export function QuoteForm() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [projectType, setProjectType] = useState("");
+  const isFurniture = projectType === "furniture";
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -63,7 +68,14 @@ export function QuoteForm() {
         <input id="email" name="email" type="email" required autoComplete="email" className={inputClass} />
       </Field>
       <Field label="Project Type" htmlFor="projectType">
-        <select id="projectType" name="projectType" required defaultValue="" className={inputClass}>
+        <select
+          id="projectType"
+          name="projectType"
+          required
+          value={projectType}
+          onChange={(e) => setProjectType(e.target.value)}
+          className={inputClass}
+        >
           <option value="" disabled>
             Select one
           </option>
@@ -74,16 +86,27 @@ export function QuoteForm() {
         </select>
       </Field>
       <Field label="Estimated Budget" htmlFor="budget">
-        <select id="budget" name="budget" required defaultValue="" className={inputClass}>
-          <option value="" disabled>
-            Select a range
-          </option>
-          {budgetRanges.map((range) => (
-            <option key={range} value={range}>
-              {range}
+        {isFurniture ? (
+          <input
+            id="budget"
+            name="budget"
+            type="text"
+            required
+            placeholder="e.g. $3,000 – $6,000"
+            className={inputClass}
+          />
+        ) : (
+          <select id="budget" name="budget" required defaultValue="" className={inputClass}>
+            <option value="" disabled>
+              Select a range
             </option>
-          ))}
-        </select>
+            {budgetRanges.map((range) => (
+              <option key={range} value={range}>
+                {range}
+              </option>
+            ))}
+          </select>
+        )}
       </Field>
       <Field label="Timeline" htmlFor="timeline" className="sm:col-span-2">
         <select id="timeline" name="timeline" required defaultValue="" className={inputClass}>
@@ -104,9 +127,33 @@ export function QuoteForm() {
           rows={5}
           required
           className={inputClass}
-          placeholder="Space type, size, what you're hoping to achieve…"
+          placeholder={
+            isFurniture
+              ? "What you'd like made (e.g. dining table, wardrobe, TV console), materials and finishes you have in mind, and dimensions if you know them…"
+              : "Space type, size, what you're hoping to achieve…"
+          }
         />
       </Field>
+      {isFurniture && (
+        <Field
+          label="Reference Photos, Renders or Dimensions (optional)"
+          htmlFor="referenceFiles"
+          className="sm:col-span-2"
+        >
+          <input
+            id="referenceFiles"
+            name="referenceFiles"
+            type="file"
+            multiple
+            accept="image/*,.pdf"
+            className={fileInputClass}
+          />
+          <p className="mt-2 text-sm text-muted">
+            Photos of pieces you like, or any renders and measured drawings you already have,
+            help us quote accurately.
+          </p>
+        </Field>
+      )}
       <div className="sm:col-span-2">
         <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={submitting}>
           {submitting ? "Sending…" : "Send Enquiry"}

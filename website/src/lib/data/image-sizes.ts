@@ -52,6 +52,7 @@ export const imageSizes: Record<string, ImageSize> = {
   "/images/portfolio/september-coffee/8.jpg": { w: 1068, h: 1600 },
   "/images/portfolio/september-coffee/9.jpg": { w: 1066, h: 1600 },
   "/images/portfolio/september-coffee/10.jpg": { w: 1536, h: 2048 },
+  "/images/portfolio/september-coffee/11.jpg": { w: 2048, h: 1536 },
 };
 
 /** Landscape photos get a wide tile; portrait and square stay tall. */

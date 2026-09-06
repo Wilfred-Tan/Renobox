@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 export function StatCounter({
   value,
   suffix = "",
-  duration = 1600,
+  duration = 2000,
 }: {
   value: number;
   suffix?: string;

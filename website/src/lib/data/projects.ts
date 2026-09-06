@@ -48,6 +48,7 @@ export const projects: Project[] = [
       "/images/portfolio/september-coffee/8.jpg",
       "/images/portfolio/september-coffee/9.jpg",
       "/images/portfolio/september-coffee/10.jpg",
+      "/images/portfolio/september-coffee/11.jpg",
     ],
   },
   {

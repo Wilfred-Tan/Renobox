@@ -83,7 +83,7 @@ export function Nav() {
                 {site.phoneDisplay}
               </a>
               <Button href="/contact" size="md">
-                Get a Quote
+                Contact Us
               </Button>
             </div>
 
@@ -130,12 +130,8 @@ export function Nav() {
                 </li>
               ))}
             </ul>
-            <a href={site.phoneHref} className="flex items-center gap-2 py-1 text-paper/80">
-              <PhoneIcon className="h-4 w-4" aria-hidden="true" />
-              {site.phoneDisplay}
-            </a>
             <Button href="/contact" size="lg" className="w-full" onClick={() => setOpen(false)}>
-              Get a Quote
+              Contact Us
             </Button>
           </Container>
         </div>

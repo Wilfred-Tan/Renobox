@@ -65,7 +65,7 @@ const faqItems = [
   {
     question: "How long does a typical renovation take?",
     answer:
-      "A 4-room HDB resale typically runs 8–10 weeks; condos and landed homes vary with scope. You'll get a specific timeline as part of your fixed quote, not a rough estimate.",
+      "A 4-room HDB resale typically runs 8–10 weeks; condos and landed homes vary with scope. You'll get a specific timeline as part of your quote, not a rough estimate.",
   },
   {
     question: "Do you help with HDB permit applications?",
@@ -73,7 +73,7 @@ const faqItems = [
       "Yes — HDB renovation permit submission and any required PE endorsements for hacking works are handled by our team as part of the project.",
   },
   {
-    question: "What's included in the fixed quote?",
+    question: "What's included in the quote?",
     answer:
       "Every line item — materials, labour, and carpentry — is itemised before work starts. Any changes you request after that are quoted separately and approved by you before proceeding.",
   },
@@ -87,7 +87,7 @@ export default function ResidentialPage() {
       <PageHero
         eyebrow="Residential"
         title="A renovation that's designed around how you live."
-        description="HDB, condo, and landed homes — planned with 3D visualisation, priced with a fixed quote, and managed by one team from first sketch to key handover."
+        description="HDB, condo, and landed homes — planned with 3D visualisation, competitively priced, and managed by one team from first sketch to key handover."
         imageSrc="/images/portfolio/residential-potong-pasir/2.jpg"
       >
         <div className="flex flex-col gap-4 sm:flex-row">
@@ -172,7 +172,7 @@ export default function ResidentialPage() {
             </h2>
             <p className="mx-auto mt-5 max-w-lg text-lg text-paper/60">
               Share your unit type and move-in timeline — we&apos;ll come back with a clear scope
-              and a fixed quote.
+              and a competitively priced quote.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button href="/contact" size="lg">

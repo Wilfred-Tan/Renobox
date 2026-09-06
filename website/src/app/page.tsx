@@ -1,9 +1,13 @@
 import {
   WrenchScrewdriverIcon,
-  DocumentCheckIcon,
   UserGroupIcon,
+  BuildingOfficeIcon,
+  SparklesIcon,
+  CubeIcon,
+  ArrowUpRightIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -11,15 +15,32 @@ import { StatCounter } from "@/components/ui/StatCounter";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { ServiceCard } from "@/components/cards/ServiceCard";
 import { ProjectCard } from "@/components/cards/ProjectCard";
-import { ProcessStep } from "@/components/cards/ProcessStep";
 import { FeatureItem } from "@/components/cards/FeatureItem";
+import { ClientLogoGrid } from "@/components/sections/ClientLogoGrid";
 import { site } from "@/lib/data/site";
 import { projects } from "@/lib/data/projects";
 
-// Balance the teaser across both audiences rather than a blind first-N slice.
-const featuredProjects = [
-  ...projects.filter((p) => p.category === "commercial").slice(0, 4),
-  ...projects.filter((p) => p.category === "residential").slice(0, 2),
+// Hand-picked, not a blind first-N slice — Suntec City has no photos yet, so
+// it's excluded here even though it'd otherwise be in chronological range.
+const featuredSlugs = [
+  "september-coffee",
+  "office-mbfc",
+  "kfc-plq",
+  "pizza-hut-tiong-bahru",
+  "residential-potong-pasir",
+  "residential-bidadari",
+];
+const featuredProjects = featuredSlugs
+  .map((slug) => projects.find((p) => p.slug === slug))
+  .filter((p): p is (typeof projects)[number] => Boolean(p));
+
+// On mobile (single-column) the grid shows only this hand-picked subset of 4;
+// the rest appear once the grid widens to 2+ columns at the sm breakpoint.
+const mobileOnlySlugs = [
+  "september-coffee",
+  "office-mbfc",
+  "residential-potong-pasir",
+  "residential-bidadari",
 ];
 
 // Hand-picked across all projects in each category — not a generic slice —
@@ -39,26 +60,48 @@ const residentialShowcase = [
   "/images/portfolio/residential-potong-pasir/3.jpg",
 ];
 
-const processSteps = [
+const whyUsItems = [
   {
-    title: "Consult & Scope",
+    icon: BuildingOfficeIcon,
+    title: "Our In-House Factory",
     description:
-      "We walk the space, understand how you'll use it, and align on budget and timeline before anything is drawn.",
+      "A 20-strong in-house team of carpenters, painters, and masons works out of our own Singapore factory — no waiting on outside trade schedules.",
   },
   {
-    title: "Scope & Fixed Quote",
+    icon: SparklesIcon,
+    title: "Experience With Complex Projects",
     description:
-      "We work from your drawings if you already have them, or bring in a designer if you don't — either way, you get an itemised, fixed quote before anything is built.",
+      "We've delivered multiple flagship outlets for major F&B operators — projects with a broader scope of work and more exacting standards of workmanship and design than a standard fit-out.",
   },
   {
-    title: "Build & Manage",
+    icon: WrenchScrewdriverIcon,
+    title: "On-Time, On-Budget Delivery",
     description:
-      "One project manager coordinates every trade, with regular site updates so you're never left guessing.",
+      "Renovation execution is our core trade — for homeowners, brands, and the design firms who trust us to build what they've drawn.",
   },
   {
-    title: "Handover & Support",
+    icon: UserGroupIcon,
+    title: "Dedicated Project Management",
     description:
-      "A final walkthrough, snag-free handover, and a warranty period backed by a team that stays reachable.",
+      "A single point of contact coordinates every trade and keeps you updated without you having to chase.",
+  },
+];
+
+// Lighter-weight paths alongside the two primary crafts above — same "pick
+// your path" idea, without the full slideshow-card treatment.
+const secondarySegments = [
+  {
+    href: "/partnerships",
+    icon: UserGroupIcon,
+    title: "Design Firm Partnerships",
+    description:
+      "Main-contractor support for ID firms — from full execution to specialist trade support.",
+  },
+  {
+    href: "/contact",
+    icon: CubeIcon,
+    title: "Bespoke Furniture",
+    description: "Custom-built furniture and joinery, sized and finished for your space.",
   },
 ];
 
@@ -68,28 +111,31 @@ export default function HomePage() {
       {/* Hero */}
       <section className="relative flex min-h-[92dvh] items-end overflow-hidden bg-ink">
         <Image
-          src="/images/portfolio/residential-bidadari/2.jpg"
+          src="/images/portfolio/september-coffee/11.jpg"
           alt=""
           fill
           priority
           sizes="100vw"
           className="absolute inset-0 object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-ink/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/70 to-ink/40" />
         <Container size="wide" className="relative z-10 pt-40 pb-20 md:pt-48 md:pb-28">
-          <p className="mb-6 flex animate-fade-up items-center gap-3 text-xs font-semibold tracking-[0.25em] text-gold-bright uppercase">
+          <p className="mb-6 flex animate-fade-up items-center gap-3 text-xs font-semibold tracking-[0.25em] text-gold-bright uppercase drop-shadow-[0_1px_6px_rgba(0,0,0,0.65)]">
             <span className="h-px w-8 bg-gold-bright" />
             Renovation &amp; Fit-Out &middot; Singapore
           </p>
           <h1 className="max-w-4xl animate-fade-up text-5xl leading-[1.02] font-semibold tracking-tight text-balance text-paper [animation-delay:120ms] font-heading md:text-7xl lg:text-8xl">
-            We renovate spaces people <span className="text-gold-bright">remember.</span>
+            We renovate spaces people{" "}
+            <span className="text-gold-bright drop-shadow-[0_2px_10px_rgba(0,0,0,0.65)]">
+              remember.
+            </span>
           </h1>
           <p className="mt-8 max-w-xl animate-fade-up text-lg leading-relaxed text-paper/70 [animation-delay:240ms] md:text-xl">
             {site.name}
             {" "}
-            delivers renovation and fit-out projects for homeowners, brand teams, and interior
-            design firms across Singapore — with bespoke furniture and design support available
-            when you need it.
+            delivers commercial fit-outs for brand teams and interior design firms across
+            Singapore, backed by a proven track record in residential renovation — plus bespoke
+            furniture and design support when you need it.
           </p>
           <div className="mt-10 flex animate-fade-up flex-col gap-4 [animation-delay:360ms] sm:flex-row">
             <Button href="/portfolio" size="lg">
@@ -123,14 +169,39 @@ export default function HomePage() {
         </Container>
       </section>
 
+      {/* Why us */}
+      <section className="bg-ink py-24 text-paper md:py-32">
+        <Container size="wide">
+          <RevealOnScroll>
+            <SectionHeading
+              eyebrow="Why Us"
+              title="Built for clients who can't afford surprises."
+              tone="light"
+            />
+          </RevealOnScroll>
+          <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+            {whyUsItems.map((item, i) => (
+              <RevealOnScroll key={item.title} delay={i * 100}>
+                <FeatureItem
+                  icon={item.icon}
+                  title={item.title}
+                  description={item.description}
+                  tone="light"
+                />
+              </RevealOnScroll>
+            ))}
+          </div>
+        </Container>
+      </section>
+
       {/* Dual path intro */}
       <section className="py-24 md:py-32">
         <Container size="wide">
           <RevealOnScroll>
             <SectionHeading
               eyebrow="What We Do"
-              title="Two crafts, one standard of delivery."
-              description="Whether it's a restaurant that needs to open on schedule, a home that needs to feel right for years, or a design firm's project that needs a dependable build partner, the same execution and project-management discipline applies."
+              title="Commercial fit-outs are our focus."
+              description="We're built primarily around commercial and F&B fit-outs — restaurants, retail, and offices with hard opening-day deadlines — and bring that same rigour to residential renovation, where we've built a proven track record from HDB units to full landed homes."
             />
           </RevealOnScroll>
           <div className="mt-14 grid gap-8 md:grid-cols-2">
@@ -149,10 +220,54 @@ export default function HomePage() {
                 title="Residential Renovation"
                 imageLabel="Residential"
                 images={residentialShowcase}
-                description="HDB, condo, and landed renovations, from space planning through custom carpentry and bespoke furniture to final handover."
+                description="A proven track record across HDB, condo, and landed renovations — from space planning through custom carpentry and bespoke furniture to final handover."
               />
             </RevealOnScroll>
           </div>
+
+          <p className="mt-14 text-sm font-semibold tracking-wide text-muted uppercase">
+            We Also Offer
+          </p>
+          <div className="mt-6 grid gap-6 sm:grid-cols-2">
+            {secondarySegments.map((item, i) => (
+              <RevealOnScroll key={item.href} delay={i * 100}>
+                <Link
+                  href={item.href}
+                  className="group flex items-start gap-4 border border-ink/10 p-6 transition-colors duration-300 hover:border-gold/40"
+                >
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ink/5 text-gold-deep">
+                    <item.icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <div>
+                    <h3 className="font-heading text-lg font-semibold text-ink">{item.title}</h3>
+                    <p className="mt-1 leading-relaxed text-muted">{item.description}</p>
+                    <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-deep">
+                      Learn more
+                      <ArrowUpRightIcon
+                        className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                        aria-hidden="true"
+                      />
+                    </span>
+                  </div>
+                </Link>
+              </RevealOnScroll>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Corporate clients — credibility signal, right after the segment picker */}
+      <section className="py-20 md:py-24">
+        <Container size="wide">
+          <RevealOnScroll>
+            <SectionHeading
+              eyebrow="Trusted By"
+              title="Brands and corporates who've built with us."
+            />
+          </RevealOnScroll>
+          <RevealOnScroll delay={100} className="mt-12">
+            <ClientLogoGrid />
+          </RevealOnScroll>
         </Container>
       </section>
 
@@ -164,7 +279,7 @@ export default function HomePage() {
               <SectionHeading
                 eyebrow="Selected Work"
                 title="Recent projects across Singapore."
-                description={`A well-documented slice of the ${site.stats[1].value}+ projects we've delivered over ${site.stats[0].value}+ years.`}
+                description={`What's below is our more recent, best-documented work — for most of our ${site.stats[0].value}+ years, word of mouth was all the marketing this business needed. We're only now growing beyond that to reach a wider audience, so don't hesitate to ask about the projects that came before.`}
                 className="max-w-xl"
               />
             </RevealOnScroll>
@@ -175,70 +290,20 @@ export default function HomePage() {
             </RevealOnScroll>
           </div>
           <div className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredProjects.map((project, i) => (
-              <RevealOnScroll key={project.slug} delay={(i % 3) * 100}>
-                <ProjectCard project={project} />
-              </RevealOnScroll>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Process */}
-      <section className="py-24 md:py-32">
-        <Container size="wide">
-          <RevealOnScroll>
-            <SectionHeading
-              eyebrow="How We Work"
-              title="A fixed process, from first call to handover."
-              description="The same four stages apply whether it's a six-week cafe fit-out or a four-month landed home renovation."
-            />
-          </RevealOnScroll>
-          <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            {processSteps.map((step, i) => (
-              <RevealOnScroll key={step.title} delay={i * 100}>
-                <ProcessStep index={i + 1} title={step.title} description={step.description} />
-              </RevealOnScroll>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Why us */}
-      <section className="bg-ink py-24 text-paper md:py-32">
-        <Container size="wide">
-          <RevealOnScroll>
-            <SectionHeading
-              eyebrow="Why Us"
-              title="Built for clients who can't afford surprises."
-              tone="light"
-            />
-          </RevealOnScroll>
-          <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-            <RevealOnScroll delay={0}>
-              <FeatureItem
-                icon={WrenchScrewdriverIcon}
-                title="On-Time, On-Budget Delivery"
-                description="Renovation execution is our core trade — for homeowners, brands, and the design firms who trust us to build what they've drawn."
-                tone="light"
-              />
-            </RevealOnScroll>
-            <RevealOnScroll delay={100}>
-              <FeatureItem
-                icon={DocumentCheckIcon}
-                title="Transparent, Fixed Quotes"
-                description="An itemised quote before work begins, so the number you approve is the number you pay."
-                tone="light"
-              />
-            </RevealOnScroll>
-            <RevealOnScroll delay={200}>
-              <FeatureItem
-                icon={UserGroupIcon}
-                title="Dedicated Project Management"
-                description="A single point of contact coordinates every trade and keeps you updated without you having to chase."
-                tone="light"
-              />
-            </RevealOnScroll>
+            {featuredProjects.map((project, i) => {
+              // Mobile shows a tighter, hand-picked set of 4; these two only
+              // appear once the grid widens to 2+ columns.
+              const desktopOnly = mobileOnlySlugs.every((slug) => slug !== project.slug);
+              return (
+                <RevealOnScroll
+                  key={project.slug}
+                  delay={(i % 3) * 100}
+                  className={desktopOnly ? "hidden sm:block" : undefined}
+                >
+                  <ProjectCard project={project} />
+                </RevealOnScroll>
+              );
+            })}
           </div>
         </Container>
       </section>
@@ -271,7 +336,7 @@ export default function HomePage() {
             </h2>
             <p className="mx-auto mt-5 max-w-lg text-lg text-paper/60">
               Tell us about your space and timeline — we&apos;ll come back with a clear scope and
-              a fixed quote.
+              a competitively priced quote.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button href="/contact" size="lg">

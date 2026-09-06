@@ -70,7 +70,7 @@ const faqItems = [
   {
     question: "What happens if there's a delay?",
     answer:
-      "Our fixed quote includes an agreed timeline with milestones. If a delay originates on our side, we absorb the cost of catching back up — we don't pass site inefficiency on to you.",
+      "Our competitively priced quote includes an agreed timeline with milestones. If a delay originates on our side, we absorb the cost of catching back up — we don't pass site inefficiency on to you.",
   },
   {
     question: "Can you work with our own architect or ID?",
