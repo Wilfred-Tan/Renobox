@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Claude Code's own tooling (skills, agent config) — not site source.
+    // Only relevant now that this config lives at the repo root instead of
+    // nested under website/, where `.claude/` was previously out of scope.
+    ".claude/**",
   ]),
 ]);
 

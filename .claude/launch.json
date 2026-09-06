@@ -4,7 +4,7 @@
     {
       "name": "renovation-website",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["--prefix", "website", "run", "dev"],
+      "runtimeArgs": ["run", "dev"],
       "port": 3000
     }
   ]

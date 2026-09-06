@@ -4,23 +4,22 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## ⚠️ Next.js 16 — read the local docs first
 
-The app uses **Next.js 16.2.10**, which has breaking changes from older/training-data conventions. Before writing any Next.js code (routing, `params`/`searchParams`, metadata, fonts, images, route handlers), read the relevant guide under `website/node_modules/next/dist/docs/`. This is also enforced by `website/AGENTS.md`. Notable gotchas already hit: `params` is a `Promise` in dynamic pages/`generateMetadata`; set `data-scroll-behavior="smooth"` on `<html>` when using CSS smooth scroll.
+The app uses **Next.js 16.2.10**, which has breaking changes from older/training-data conventions. Before writing any Next.js code (routing, `params`/`searchParams`, metadata, fonts, images, route handlers), read the relevant guide under `node_modules/next/dist/docs/`. This is also enforced by `AGENTS.md`. Notable gotchas already hit: `params` is a `Promise` in dynamic pages/`generateMetadata`; set `data-scroll-behavior="smooth"` on `<html>` when using CSS smooth scroll.
 
 ## Project location
 
-The working directory is the repo root, but the Next.js app lives in the **`website/`** subfolder. Run all npm commands from there (or via `--prefix website`). Sibling `Website Samples/` holds design-reference images only — not code.
+The Next.js app lives at the **repo root** — `package.json`, `src/`, `public/`, etc. are all here directly (this used to be nested under a `website/` subfolder; it was flattened so hosting platforms that expect `package.json` at the repo root, e.g. GoDaddy Node.js Hosting, can deploy it without extra config). Sibling folders (`Website Samples/`, `Project Photos/`, `Company Logo/`, `Project Logos/`, `Company Project List/`) hold design-reference images and internal business data only — not code.
 
 ## Commands
 
 ```bash
-cd website
 npm run dev            # Turbopack dev server on :3000
 npm run build          # production build (fully static export — verifies generateStaticParams)
 npm run lint           # eslint (flat config, eslint-config-next)
 npx tsc --noEmit       # type-check (no dedicated script)
 ```
 
-The dev server is also wired into `.claude/launch.json` (`npm --prefix website run dev`, port 3000) for the preview tools. There is **no test suite**. Treat `npm run build` + `npx tsc --noEmit` + `npm run lint` as the pre-delivery gate — the build catches App Router / static-generation errors that dev mode does not.
+The dev server is also wired into `.claude/launch.json` (`npm run dev`, port 3000) for the preview tools. There is **no test suite**. Treat `npm run build` + `npx tsc --noEmit` + `npm run lint` as the pre-delivery gate — the build catches App Router / static-generation errors that dev mode does not.
 
 ## Architecture
 

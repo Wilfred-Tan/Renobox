@@ -5,7 +5,7 @@ The gallery needs each photo's orientation to decide whether it gets a wide
 projects.ts — which drifts every time photos are re-curated — this reads the
 actual files and regenerates the map.
 
-Run from website/:  python scripts/gen-image-sizes.py
+Run from the repo root:  python scripts/gen-image-sizes.py
 """
 
 import os

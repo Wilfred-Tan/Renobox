@@ -5,7 +5,7 @@ no portfolio photo is orphaned.
 referenced in projects.ts silently 404s in the browser while the build reports
 success. This closes that gap.
 
-Run from website/:  python scripts/check-images.py
+Run from the repo root:  python scripts/check-images.py
 Exits non-zero on any mismatch so it can gate a build.
 """
 
