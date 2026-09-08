@@ -1,5 +1,4 @@
-// Placeholder domain — update once the real domain is live (also update DNS / hosting).
-export const siteUrl = "https://www.renobox.com.sg";
+export const siteUrl = "https://www.renobox.sg";
 
 export const site = {
   name: "Reno Box",

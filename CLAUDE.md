@@ -14,7 +14,7 @@ The Next.js app lives at the **repo root** — `package.json`, `src/`, `public/`
 
 ```bash
 npm run dev            # Turbopack dev server on :3000
-npm run build          # production build (fully static export — verifies generateStaticParams)
+npm run build          # production build via webpack (see Deployment below) — verifies generateStaticParams
 npm run lint           # eslint (flat config, eslint-config-next)
 npx tsc --noEmit       # type-check (no dedicated script)
 ```
@@ -38,6 +38,18 @@ Marketing site for a Singapore renovation firm serving two audiences (commercial
 
 **Content lives in `src/lib/data/`, not in pages** — `site.ts` (brand, contact, stats, `whatsappHref`, `siteUrl`), `projects.ts` (portfolio + `getProjectBySlug`, drives `/portfolio/[slug]` via `generateStaticParams`), `testimonials.ts`, `nav.ts`. Pages/components import from here so copy changes happen in one place. `sitemap.ts` and `robots.ts` also read from this data.
 
-## ⚠️ Placeholder content — must be replaced before launch
+## Deployment
 
-Everything in `src/lib/data/` is **placeholder** (brand name "Forme", `+65 8000 0000`, `6580000000` WhatsApp, `formestudio.sg`, UEN, stats, projects, testimonials) and images are `PlaceholderImage` grid boxes, not photos. The `QuoteForm` (`src/components/forms/QuoteForm.tsx`) has **no backend** — it simulates success with a timeout. Before go-live it needs a route handler (e.g. `src/app/api/enquiry/route.ts`) + an email service. Search the data files for `PLACEHOLDER` and update `siteUrl` (used by sitemap/robots/metadata) when the real domain is known.
+**Live at [renobox.sg](https://www.renobox.sg).** Hosted on **GoDaddy Node.js Hosting** (currently beta), connected via GitHub import — GitHub repo is [Wilfred-Tan/Renobox](https://github.com/Wilfred-Tan/Renobox) (`main` branch; `gh` CLI is authenticated locally and wired into git, so `git push` just works).
+
+⚠️ **`npm run build` must keep the `--webpack` flag.** GoDaddy's build container blocks the port bind that Turbopack's `@tailwindcss/postcss` worker needs, failing with `TurbopackInternalError: ... Permission denied (os error 13)`. Do not remove `--webpack` from the `build` script without re-testing a deploy. `npm run dev` is unaffected and still uses Turbopack.
+
+The app was moved from a nested `website/` subfolder to the repo root (see git history around commit `695db87`) specifically because GoDaddy's GitHub import expects `package.json` at the repo root and has no subfolder/monorepo option.
+
+## ⚠️ Remaining placeholder content
+
+Most of `src/lib/data/site.ts` is now real (brand name, phone, WhatsApp, address, UEN, stats) — it is **not** the original starter-template placeholder anymore. What's still outstanding:
+
+- `site.socials` (Instagram/Facebook/LinkedIn) are still generic placeholder URLs — swap in real profile links when available.
+- `site.certifications` (BCA Registered Contractor, CaseTrust Accredited) are flagged as **unconfirmed** in a code comment — claiming a licence/accreditation the company doesn't actually hold is a compliance risk, so confirm these before treating them as final.
+- The `QuoteForm` (`src/components/forms/QuoteForm.tsx`) still has **no backend** — it simulates success with a timeout. Now that the site is live, this is the main functional gap: it needs a route handler (e.g. `src/app/api/enquiry/route.ts`) + an email service before real enquiries can actually reach anyone.
