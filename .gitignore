@@ -23,6 +23,7 @@ yarn-error.log*
 # ---- Local Claude Code state (machine-specific) ----
 .claude/settings.local.json
 .claude/scheduled_tasks.lock
+.superpowers/
 
 # ---- Python cruft from skill scripts ----
 __pycache__/
