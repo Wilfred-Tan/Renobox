@@ -23,7 +23,7 @@ The dev server is also wired into `.claude/launch.json` (`npm run dev`, port 300
 
 ## Architecture
 
-Marketing site for a Singapore renovation firm serving two audiences (commercial/F&B fit-outs and residential). Design direction (premium dark-editorial, warm charcoal + gold) was generated via the `ui-ux-pro-max` skill. App Router, all pages statically rendered.
+Marketing site for a Singapore renovation firm serving two audiences (commercial/F&B fit-outs and residential). Design direction (premium dark-editorial, warm charcoal + gold) was generated via the `ui-ux-pro-max` skill. App Router — all pages statically rendered except the dynamic `src/app/api/enquiry/route.ts` POST route handler.
 
 **Styling — Tailwind CSS v4, CSS-first (no `tailwind.config.js`).** The entire theme is defined in `src/app/globals.css` via `@theme inline`. Design tokens are plain CSS variables promoted to Tailwind utilities:
 - Colors are **semantic, not literal**: `ink` / `ink-soft` / `ink-elevated` (dark surfaces), `paper` / `paper-dim` (light surfaces), `muted`, `gold` / `gold-bright` / `gold-deep` (accent). Use them as utilities (`bg-ink`, `text-paper`, `text-gold-deep`, `border-ink/10`). Do not introduce raw hex in components.

@@ -52,11 +52,26 @@ export function QuoteForm() {
 
     setSubmitting(true);
     try {
-      const response = await fetch("/api/enquiry", { method: "POST", body: formData });
-      const result = await response.json();
-      if (!response.ok) {
-        throw new Error(result.error || "Something went wrong.");
+      let response: Response;
+      try {
+        response = await fetch("/api/enquiry", { method: "POST", body: formData });
+      } catch {
+        throw new Error(
+          "Network error — please check your connection and try again, or reach us directly on WhatsApp.",
+        );
       }
+
+      let result: { error?: string } = {};
+      try {
+        result = await response.json();
+      } catch {
+        // Non-JSON response body (e.g. a server error page) — fall through to the generic message below.
+      }
+
+      if (!response.ok) {
+        throw new Error(result.error || "Something went wrong. Please try again or contact us directly.");
+      }
+
       setSubmitted(true);
     } catch (error) {
       setSubmitError(
@@ -83,8 +98,8 @@ export function QuoteForm() {
   return (
     <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-6 sm:grid-cols-2">
       <div aria-hidden="true" style={{ position: "absolute", left: "-9999px" }}>
-        <label htmlFor="company">Leave this field empty</label>
-        <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
+        <label htmlFor="website_confirm">Leave this field empty</label>
+        <input id="website_confirm" name="website_confirm" type="text" tabIndex={-1} autoComplete="off" />
       </div>
       <Field label="Full Name" htmlFor="name">
         <input id="name" name="name" type="text" required autoComplete="name" className={inputClass} />

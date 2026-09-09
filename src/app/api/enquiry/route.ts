@@ -4,12 +4,14 @@ import { site } from "@/lib/data/site";
 
 export const runtime = "nodejs";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const FROM_ADDRESS =
   process.env.RESEND_FROM_ADDRESS || "Reno Box <onboarding@resend.dev>";
 const NOTIFICATION_BCC = "wilfredtanwy@gmail.com";
 const MAX_ATTACHMENTS_BYTES = 8 * 1024 * 1024;
+// Headroom above the attachment cap for the rest of the multipart body
+// (text fields, boundaries). Best-effort only — Content-Length can be
+// absent on chunked requests, so this is defense-in-depth, not a hard limit.
+const MAX_BODY_BYTES = 12 * 1024 * 1024;
 
 const REQUIRED_FIELDS = [
   "name",
@@ -31,12 +33,36 @@ const FIELD_LABELS: Record<(typeof REQUIRED_FIELDS)[number], string> = {
   message: "Message",
 };
 
+const PROJECT_TYPE_LABELS: Record<string, string> = {
+  commercial: "Commercial / F&B Fit-Out",
+  residential: "Residential Renovation",
+  "id-partnership": "Interior Design Firm Partnership",
+  furniture: "Bespoke Furniture",
+};
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export async function POST(request: Request) {
-  const formData = await request.formData();
+  const contentLength = Number(request.headers.get("content-length") ?? 0);
+  if (contentLength > MAX_BODY_BYTES) {
+    return NextResponse.json(
+      { error: "Attachments are too large — please keep the total under 8MB." },
+      { status: 413 },
+    );
+  }
+
+  let formData: FormData;
+  try {
+    formData = await request.formData();
+  } catch {
+    return NextResponse.json({ error: "Malformed submission." }, { status: 400 });
+  }
 
   // Honeypot: real users never see or fill this field. Bots that
   // autofill every field will fill it, so pretend success and drop it.
-  const honeypot = formData.get("company");
+  // Named to avoid common browser autofill heuristics — "company" gets
+  // filled by Chromium's saved address-profile autofill for real users.
+  const honeypot = formData.get("website_confirm");
   if (typeof honeypot === "string" && honeypot.trim() !== "") {
     return NextResponse.json({ success: true });
   }
@@ -51,6 +77,15 @@ export async function POST(request: Request) {
       );
     }
     values[field] = value;
+  }
+
+  if (!EMAIL_PATTERN.test(values.email)) {
+    return NextResponse.json({ error: "Please enter a valid email address." }, { status: 400 });
+  }
+
+  const projectTypeLabel = PROJECT_TYPE_LABELS[values.projectType];
+  if (!projectTypeLabel) {
+    return NextResponse.json({ error: "Please select a valid project type." }, { status: 400 });
   }
 
   const files = formData
@@ -72,24 +107,36 @@ export async function POST(request: Request) {
     })),
   );
 
+  const safeName = values.name.replace(/[\r\n]+/g, " ");
+
   const html = `
     <h2>New enquiry from renobox.sg</h2>
     <p><strong>${FIELD_LABELS.name}:</strong> ${escapeHtml(values.name)}</p>
     <p><strong>${FIELD_LABELS.phone}:</strong> ${escapeHtml(values.phone)}</p>
     <p><strong>${FIELD_LABELS.email}:</strong> ${escapeHtml(values.email)}</p>
-    <p><strong>${FIELD_LABELS.projectType}:</strong> ${escapeHtml(values.projectType)}</p>
+    <p><strong>${FIELD_LABELS.projectType}:</strong> ${escapeHtml(projectTypeLabel)}</p>
     <p><strong>${FIELD_LABELS.budget}:</strong> ${escapeHtml(values.budget)}</p>
     <p><strong>${FIELD_LABELS.timeline}:</strong> ${escapeHtml(values.timeline)}</p>
     <p><strong>${FIELD_LABELS.message}:</strong></p>
     <p>${escapeHtml(values.message).replace(/\n/g, "<br />")}</p>
   `;
 
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.error("RESEND_API_KEY is not set.");
+    return NextResponse.json(
+      { error: "Failed to send enquiry. Please try again or contact us directly." },
+      { status: 502 },
+    );
+  }
+
+  const resend = new Resend(apiKey);
   const { data, error } = await resend.emails.send({
     from: FROM_ADDRESS,
     to: site.email,
     bcc: NOTIFICATION_BCC,
     replyTo: values.email,
-    subject: `New enquiry — ${values.projectType} — ${values.name}`,
+    subject: `New enquiry — ${projectTypeLabel} — ${safeName}`,
     html,
     attachments: attachments.length > 0 ? attachments : undefined,
   });
