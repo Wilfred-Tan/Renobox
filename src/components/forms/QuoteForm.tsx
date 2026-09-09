@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import { Button } from "@/components/ui/Button";
+import { whatsappHref } from "@/lib/data/site";
 
 const budgetRanges = [
   "Under $20,000",
@@ -25,22 +26,45 @@ const inputClass =
 const fileInputClass =
   "w-full rounded-lg border border-ink/15 bg-paper px-4 py-3 text-sm text-muted transition-colors file:mr-4 file:cursor-pointer file:rounded-md file:border-0 file:bg-gold file:px-4 file:py-2 file:text-sm file:font-semibold file:text-ink file:transition-colors hover:file:bg-gold-bright focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30";
 
+const MAX_ATTACHMENTS_BYTES = 8 * 1024 * 1024;
+
 export function QuoteForm() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [projectType, setProjectType] = useState("");
   const isFurniture = projectType === "furniture";
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    // No backend is wired up yet — connect this to a Route Handler
-    // (e.g. src/app/api/enquiry/route.ts) plus an email service such as
-    // Resend before launch, then replace this simulated success state.
+    setSubmitError(null);
+
+    const formData = new FormData(event.currentTarget);
+
+    const files = formData
+      .getAll("referenceFiles")
+      .filter((entry): entry is File => entry instanceof File && entry.size > 0);
+    const totalSize = files.reduce((sum, file) => sum + file.size, 0);
+    if (totalSize > MAX_ATTACHMENTS_BYTES) {
+      setSubmitError("Your attached files are too large — please keep the total under 8MB.");
+      return;
+    }
+
     setSubmitting(true);
-    window.setTimeout(() => {
-      setSubmitting(false);
+    try {
+      const response = await fetch("/api/enquiry", { method: "POST", body: formData });
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.error || "Something went wrong.");
+      }
       setSubmitted(true);
-    }, 600);
+    } catch (error) {
+      setSubmitError(
+        error instanceof Error ? error.message : "Something went wrong. Please try again.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   if (submitted) {
@@ -58,6 +82,10 @@ export function QuoteForm() {
 
   return (
     <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <div aria-hidden="true" style={{ position: "absolute", left: "-9999px" }}>
+        <label htmlFor="company">Leave this field empty</label>
+        <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
       <Field label="Full Name" htmlFor="name">
         <input id="name" name="name" type="text" required autoComplete="name" className={inputClass} />
       </Field>
@@ -153,6 +181,17 @@ export function QuoteForm() {
             help us quote accurately.
           </p>
         </Field>
+      )}
+      {submitError && (
+        <div className="sm:col-span-2">
+          <p className="text-sm text-destructive" role="alert">
+            {submitError} Need it urgent?{" "}
+            <a href={whatsappHref} className="underline">
+              Message us on WhatsApp
+            </a>
+            .
+          </p>
+        </div>
       )}
       <div className="sm:col-span-2">
         <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={submitting}>
