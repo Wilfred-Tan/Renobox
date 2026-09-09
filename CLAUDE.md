@@ -23,7 +23,7 @@ The dev server is also wired into `.claude/launch.json` (`npm run dev`, port 300
 
 ## Architecture
 
-Marketing site for a Singapore renovation firm serving two audiences (commercial/F&B fit-outs and residential). Design direction (premium dark-editorial, warm charcoal + gold) was generated via the `ui-ux-pro-max` skill. App Router, all pages statically rendered.
+Marketing site for a Singapore renovation firm serving two audiences (commercial/F&B fit-outs and residential). Design direction (premium dark-editorial, warm charcoal + gold) was generated via the `ui-ux-pro-max` skill. App Router — all pages statically rendered except the dynamic `src/app/api/enquiry/route.ts` POST route handler.
 
 **Styling — Tailwind CSS v4, CSS-first (no `tailwind.config.js`).** The entire theme is defined in `src/app/globals.css` via `@theme inline`. Design tokens are plain CSS variables promoted to Tailwind utilities:
 - Colors are **semantic, not literal**: `ink` / `ink-soft` / `ink-elevated` (dark surfaces), `paper` / `paper-dim` (light surfaces), `muted`, `gold` / `gold-bright` / `gold-deep` (accent). Use them as utilities (`bg-ink`, `text-paper`, `text-gold-deep`, `border-ink/10`). Do not introduce raw hex in components.
@@ -52,4 +52,4 @@ Most of `src/lib/data/site.ts` is now real (brand name, phone, WhatsApp, address
 
 - `site.socials` (Instagram/Facebook/LinkedIn) are still generic placeholder URLs — swap in real profile links when available.
 - `site.certifications` (BCA Registered Contractor, CaseTrust Accredited) are flagged as **unconfirmed** in a code comment — claiming a licence/accreditation the company doesn't actually hold is a compliance risk, so confirm these before treating them as final.
-- The `QuoteForm` (`src/components/forms/QuoteForm.tsx`) still has **no backend** — it simulates success with a timeout. Now that the site is live, this is the main functional gap: it needs a route handler (e.g. `src/app/api/enquiry/route.ts`) + an email service before real enquiries can actually reach anyone.
+- The `QuoteForm` (`src/components/forms/QuoteForm.tsx`) now sends real enquiries through `src/app/api/enquiry/route.ts` via Resend, to `william@renobox.com.sg` (BCC `wilfredtanwy@gmail.com`). Requires `RESEND_API_KEY` (and, once the `renobox.sg` sending domain is verified in Resend, `RESEND_FROM_ADDRESS`) set in the environment — see `.env.example`. The `ReviewForm` (`src/components/forms/ReviewForm.tsx`) still only simulates success and has the same gap.
